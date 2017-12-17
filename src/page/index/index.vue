@@ -3,22 +3,28 @@
     <header class="header">
     	<div class="back iconfont">&#xe624;</div>
     	<div class="search"><span class="search-ico iconfont">&#xe7e0;</span><span class="single-line">输入城市/景点/游玩主题</span></div>
-    	<div class="city">城市<i class="downarrow iconfont">&#xe601;</i></div>
+    	<div class="city">城市<i class=" iconfont">&#xe601;</i></i></div>
     </header>
-    <swiper :options="swiperOption" ref="mySwiper">
-    	<swiper-slide>
+    <swiper :options="swiperOption">
+    	<swiper-slide v-for="item in swiperInfo" :key="item.id">
     	  <div class="swiper-img-con">
-    	    <img class="swiper-img" src="http://img1.qunarzz.com/piao/fusion/1712/d1/73dc10b5cd320202.jpg_640x200_02a40951.jpg">
+    	    <img class="swiper-img" :src="item.imgUrl">
     	  </div>
-        
-    	</swiper-slide>
-    	<swiper-slide>
-    	  <div class="swiper-img-con">
-    	    <img class="swiper-img" src="http://img1.qunarzz.com/piao/fusion/1711/cd/5ff8869f365e7e02.jpg_640x200_097b1798.jpg">
-    	  </div>
-	  
     	</swiper-slide>
     	<div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+
+    <swiper>
+      <swiper-slide v-for="(pageInfo, index) in pages" :key="index">
+        <div class="icon-wrapper">
+          <div v-for="item in pageInfo" :key="item.id" class="icon-item">
+            <div class="icon-img-con">
+              <img class="icon-img" :src="item.imgUrl">
+            </div>
+          </div>
+        </div>
+        
+      </swiper-slide>
     </swiper>
   </div>
 </template>
@@ -28,12 +34,49 @@ export default {
   name: 'Index',
   data () {
     return {
+      swiperInfo: [],
+      iconInfo: [],
       swiperOption: {
-        autoplay: 1000,
-        direction: 'horizontal'
+        autoplay: 5000,
+        direction: 'horizontal',
+        pagination: '.swiper-pagination',
+        loop: true
       }
     }
+  },
+
+  computed: {
+    pages () {
+      const pages = []
+      this.iconInfo.forEach((value, index) => {
+        let page = Math.floor(index / 8)
+        if (!pages[page]) {
+          pages[page] = []
+        }
+        pages[page].push(value)
+      })
+      return pages
+    }
+  },
+
+  methods: {
+    getIndexData () {
+      this.$http.get('/static/index.json')
+        .then(this.handleGetDataSucc.bind(this))
+    },
+
+    handleGetDataSucc (res) {
+      const body = res.body
+      if (body && body.data && body.data.swiper) {
+        this.swiperInfo = body.data.swiper
+        this.iconInfo = body.data.icons
+      }
+    }
+  },
+  created () {
+    this.getIndexData()
   }
+
 }
 </script>
 
@@ -44,10 +87,10 @@ export default {
     color: #fff;
   }
   .back {
-	width: .64rem;
-	line-height: .86rem;
-	text-align: center;
-     font-weight: 900;
+	  width: .64rem;
+	  line-height: .86rem;
+	  text-align: center;
+    font-weight: 900;
   }
   .search {
   	flex: 1;
@@ -68,15 +111,34 @@ export default {
   	width: 1.14rem;
   	line-height: .86rem;
   	text-align: center;
-  }
-  .downarrow {
-    font-size: .36rem;
-    line-height: .86rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .swiper-img-con {
+    overflow: hidden;
   	width: 100%;
+    height: 0;
+    padding-bottom: 31.25%;
   }
   .swiper-img {
   	width: 100%;
+  }
+  .icon-wrapper {
+    
+  }
+  .icon-item {
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+    padding: .4rem;
+  }
+  .icon-img-con {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+  .icon-img {
+    width: 100%;
   }
 </style>
