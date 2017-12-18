@@ -316,6 +316,7 @@ export default {
     width: 50%;
     background: url(http://img1.qunarzz.com/piao/fusion/1710/a2/e395615b16fb1302.png) center center no-repeat;
     background-size: auto 100%;
+    border-right: 1px solid #e0e0e0;
   } 
   .activity-item2 {
     width: 50%;
