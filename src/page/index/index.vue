@@ -14,7 +14,7 @@
     	<div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
 
-    <swiper :options="iconsOption">
+    <swiper :options="iconsOption" style="height: 3.8rem ; background: #fff">
       <swiper-slide v-for="(pageInfo, index) in pages" :key="index">
         <div class="icon-wrapper">
           <div v-for="item in pageInfo" :key="item.id" class="icon-item">
@@ -27,7 +27,7 @@
           </div>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination"  slot="pagination"></div>
+      <div class="swiper-pagination"  slot="pagination" style="bottom: 0"></div>
     </swiper>
 
     <ul class="listitem-con">
@@ -266,15 +266,14 @@ export default {
   }
   .icon-item {
     box-sizing: border-box;
-    padding-top: .4rem;
+    margin-top: .4rem;
     float: left;
     width: 25%;
+    height: 1.4rem;
     background: #fff;
   }
   .icon-img-con {
     width: 100%;
-    height: 0;
-    padding-bottom: 100%;
   }
   .icon-content {
     display: flex;
@@ -397,6 +396,9 @@ export default {
     overflow: hidden;
     height: 0;
     padding-bottom: 37.43%;
+  }
+  .weekendlist-img img {
+    width: 100%;
   }
   .weekendlist-info {
     position: relative;
