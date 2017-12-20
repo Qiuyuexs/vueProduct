@@ -1,0 +1,21 @@
+{
+	"ret": true,
+	"data": {
+		"museums": [{
+			"id": "001",
+			"imgUrl": "http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg",
+			"title": "故宫(AAAAA景区)"
+		}],
+		"where": [{
+			"id": "01",
+			"title": "天安门故宫珍宝馆+八达岭+颐和园+恭王府联票无线耳麦人工讲解",
+			"time": "可订12月21日",
+			"price": "27"
+		},{
+			"id": "02",
+			"title": "【5大景点】广场+故宫+八达岭长城+鸟巢水立方，北京一日游【成人 中文 不含缆车",
+			"time": "可订明日",
+			"price": "148"
+		}]
+	}
+}
