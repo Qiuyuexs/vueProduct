@@ -3,7 +3,7 @@
     <header class="header">
     	<div class="back iconfont">&#xe624;</div>
     	<div class="search"><span class="search-ico iconfont">&#xe7e0;</span><span class="single-line">输入城市/景点/游玩主题</span></div>
-    	<div class="city">城市<i class=" iconfont">&#xe601;</i></i></div>
+    	<div class="city">城市<i class=" iconfont">&#xe601;</i></div>
     </header>
     <swiper :options="swiperOption">
     	<swiper-slide v-for="item in swiperInfo" :key="item.id">
@@ -19,10 +19,12 @@
         <div class="icon-wrapper">
           <div v-for="item in pageInfo" :key="item.id" class="icon-item">
             <div class="icon-img-con">
-              <div class="icon-content">
-                <img class="icon-img" :src="item.imgUrl">
-                <div class="icon-title">{{item.title}}</div>
-              </div>
+              <router-link :to="'/onedaytour/'+item.id">
+                <div class="icon-content">
+                  <img class="icon-img" :src="item.imgUrl">
+                  <div class="icon-title">{{item.title}}</div>
+                </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -260,9 +262,6 @@ export default {
   }
   .swiper-img {
   	width: 100%;
-  }
-  .icon-wrapper {
-
   }
   .icon-item {
     box-sizing: border-box;
