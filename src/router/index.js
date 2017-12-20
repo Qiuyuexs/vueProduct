@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/page/index/index'
 import Order from '@/page/order/order'
 import Detail from '@/page/detail/detail'
+import Reserve from '@/page/reserve/reserve'
 
 Vue.use(Router)
 
@@ -30,5 +31,9 @@ export default new Router({
         template: '<div>ticket</div>'
       }
     }]
+  }, {
+    path: '/reserve',
+    name: 'reserve',
+    component: Reserve
   }]
 })
