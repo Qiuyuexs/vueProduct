@@ -54,8 +54,8 @@
       <h2 class="hot-title">热销推荐</h2>
       <div class="hot-con">
         <ul>
-          <li class="hot-list" v-for="hotlist in hotlistInfo" :key="hotlist.id">
-            <a href="javascript:;">
+          <li class="hot-list" v-for="(hotlist,index) in hotlistInfo" :key="hotlist.id">
+            <router-link :to="'/detail/' + hotlist.id">
               <div class="hotlist-img">
                 <img :src="hotlist.img">
               </div>
@@ -68,13 +68,13 @@
                 <em>{{hotlist.price}}</em>
                 <span>起</span>
               </div>
-            </a>
+            </router-link>
             
           </li>
         </ul>
       </div>
       <div class="hot-more">
-        <a href="javascript:;">查看所有产品</a>
+        <a href="#">查看所有产品</a>
       </div>
     </div>
 
